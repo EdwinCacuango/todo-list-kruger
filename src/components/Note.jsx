@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Note = ({ content }) => {
+const Note = ({ content, deleteH, ID }) => {
   const [note, setNote] = useState(content);
   const [inputNote, setInputNote] = useState(note);
   const [updating, setUpdating] = useState(false);
@@ -18,6 +18,10 @@ const Note = ({ content }) => {
     setNote(inputNote);
     setUpdating((prev) => !prev);
   };
+  const deleteHandler = () => {
+    deleteH(ID);
+    console.log(ID);
+  };
   return (
     <div className="my-4 flex bg-white border-2 py-4 px-5  items-center justify-between gap-5 min-w-[40rem]">
       {!updating ? (
@@ -30,7 +34,10 @@ const Note = ({ content }) => {
             >
               Edit
             </button>
-            <button className="bg-rose-500 py-2 px-3 rounded text-white text-center">
+            <button
+              className="bg-rose-500 py-2 px-3 rounded text-white text-center"
+              onClick={deleteHandler}
+            >
               Delete
             </button>
           </div>
